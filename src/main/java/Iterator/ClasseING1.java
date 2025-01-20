@@ -1,31 +1,40 @@
 package Iterator;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class ClasseING1 implements Classe {
-    Map<Integer,Etudiant> etudiants = new HashMap<>();
-    public Map<Integer, Etudiant> getEtudiants() {
+    Etudiant[] etudiants;
+
+
+    public Etudiant[] getEtudiants() {
         return etudiants;
     }
-
-    public void setEtudiants(Map<Integer, Etudiant> etudiants) {
-        this.etudiants = etudiants;
-    }
-
-    public void addEtudiant(Etudiant etudiant){
-        etudiants.put(etudiant.getNumEtudiant(),etudiant);
-    }
-
-    public void removeEtudiant(Etudiant etudiant){
-        etudiants.remove(etudiant.getNumEtudiant());
-    }
-
-    public void etudierAll(){
-        for (Map.Entry<Integer, Etudiant> entry : etudiants.entrySet()) {
-            entry.getValue().etudier();
+    public void addEtudiant(Etudiant etudiant) {
+        if(etudiants == null) {
+            etudiants = new Etudiant[1];
+            etudiants[0] = etudiant;
+            return;
         }
+        Etudiant[] newEtudiants = new Etudiant[etudiants.length + 1];
+        for (int i = 0; i < etudiants.length; i++) {
+            newEtudiants[i] = etudiants[i];
+        }
+        newEtudiants[etudiants.length] = etudiant;
+        etudiants = newEtudiants;
     }
+    public void removeEtudiant(Etudiant etudiant) {
+        if(etudiants == null) {
+            return;
+        }
+        Etudiant[] newEtudiants = new Etudiant[etudiants.length - 1];
+        for (int i = 0; i < etudiants.length; i++) {
+            if (etudiants[i] != etudiant) {
+                newEtudiants[i] = etudiants[i];
+            }
+        }
+        etudiants = newEtudiants;
+    }
+
+
+
 
 
 }

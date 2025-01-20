@@ -1,8 +1,8 @@
 package Iterator;
 
 public class ING2Iterator implements EtudiantIterator{
-    ClasseING2 classe=null;
-    int index=0;
+    private ClasseING2 classe=null;
+    private int index=-1;
 
     public ING2Iterator(ClasseING2 classe){
         this.classe=classe;
@@ -10,7 +10,7 @@ public class ING2Iterator implements EtudiantIterator{
 
     @Override
     public boolean hasNext() {
-        if(index<classe.getEtudiants().size()){
+        if((index+1)<classe.getEtudiants().size()){
             return true;
         }
         return false;
@@ -19,7 +19,7 @@ public class ING2Iterator implements EtudiantIterator{
     @Override
     public Etudiant next() {
         if(this.hasNext()){
-            return classe.getEtudiants().get(index++);
+            return classe.getEtudiants().get(++index);
         }
         return null;
     }

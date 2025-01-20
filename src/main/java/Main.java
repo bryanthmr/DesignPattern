@@ -10,6 +10,7 @@ import Singleton.View.*;
 import Observable.*;
 import Composite.*;
 import FabricAbstraite.*;
+import Iterator.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,48 @@ public class Main {
         testComposite();
         testFabricAbstraite();
         testPatronDeMethode();
+        testIterator();
+    }
+
+    public static void testIterator(){
+        Classe classe1 = Classe.createClasse("ING1");
+        Classe classe2 = Classe.createClasse("ING2");
+
+        Etudiant[] etudiants = new Etudiant[3];
+        etudiants[0] = new Etudiant("Matue","Amine",0);
+        etudiants[1] = new Etudiant("Tonton","ChatGPT",1);
+        etudiants[2] = new Etudiant("Fred","Tony",2);
+
+        classe1.addEtudiant(etudiants[0]);
+        classe1.addEtudiant(etudiants[1]);
+        classe1.addEtudiant(etudiants[2]);
+
+        Etudiant etudiant1 = new Etudiant("Watson", "Jane",0);
+        Etudiant etudiant2 = new Etudiant("Sparrow", "Jack",1);
+        Etudiant etudiant3 = new Etudiant("Carter", "Jim",2);
+
+        classe2.addEtudiant(etudiant1);
+        classe2.addEtudiant(etudiant2);
+        classe2.addEtudiant(etudiant3);
+
+
+        EtudiantIterator iterator1 = EtudiantIterator.createIterator(classe1);
+        EtudiantIterator iterator2 = EtudiantIterator.createIterator(classe2);
+
+        System.out.println("\n-----------------Iterator-----------------");
+        System.out.println("\nClasse 1");
+
+        while (iterator1.hasNext()) {
+            Etudiant etudiant = iterator1.next();
+            System.out.println(etudiant.getNom()+" "+etudiant.getPrenom());
+        }
+        System.out.println("\nClasse 2");
+        while (iterator2.hasNext()) {
+            Etudiant etudiant = iterator2.next();
+            System.out.println(etudiant.getNom()+" "+etudiant.getPrenom());
+        }
+
+
     }
 
     public static void testPatronDeMethode(){

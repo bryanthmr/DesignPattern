@@ -18,10 +18,6 @@ public class ClasseING2 implements Classe{
         this.etudiants.remove(etudiant);
     }
 
-    public void etudierAll() {
-        for (Etudiant etudiant : etudiants) {
-            etudiant.etudier();
-        }
-    }
+
 
 }

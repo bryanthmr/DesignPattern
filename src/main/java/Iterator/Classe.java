@@ -15,5 +15,5 @@ public interface Classe {
 
     public void addEtudiant(Etudiant etudiant);
     public void removeEtudiant(Etudiant etudiant);
-    public void etudierAll();
+
 }
