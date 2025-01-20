@@ -1,11 +1,18 @@
 import Adaptateur.*;
+import FabricAbstraite.Animal.Animal;
 import FabricMethod.*;
+import PatronDeMethode.*;
+import PatronDeMethode.Animal.*;
 import Singleton.SingleAPI;
 import Strategy.*;
 import Facade.Controller.*;
 import Singleton.View.*;
 import Observable.*;
 import Composite.*;
+import FabricAbstraite.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Main {
@@ -17,6 +24,50 @@ public class Main {
         testSingleton();
         testObserver();
         testComposite();
+        testFabricAbstraite();
+        testPatronDeMethode();
+    }
+
+    public static void testPatronDeMethode(){
+        AnimalFactoryPatron animalRareFactory = new AnimalRareFactoryPatron();
+        AnimalFactoryPatron animalNormalFactory = new AnimalNormalFactoryPatron();
+
+        List<AnimalPatron> fermeRare= animalRareFactory.createFerme();
+        List<AnimalPatron> fermeNormal= animalNormalFactory.createFerme();
+
+        System.out.println("\n-----------------PatronDeMethode-----------------");
+        System.out.println("Création d'une ferme");
+        List<AnimalPatron> ferme=new ArrayList<>(fermeNormal);
+        ferme.addAll(fermeRare);
+
+        for (AnimalPatron animal : ferme) {
+            System.out.println(animal.getNom());
+            animal.crier();
+        }
+
+    }
+
+    public static void testFabricAbstraite(){
+        AnimalFactory animalRareFactory = new AnimalRareFactory();
+        AnimalFactory animalNormalFactory = new AnimalNormalFactory();
+
+        Animal canardRare = animalRareFactory.createCanard();
+        Animal moutonRare = animalRareFactory.createMouton();
+        Animal chevalRare = animalRareFactory.createCheval();
+
+        Animal canardNormal = animalNormalFactory.createCanard();
+        Animal moutonNormal = animalNormalFactory.createMouton();
+        Animal chevalNormal = animalNormalFactory.createCheval();
+
+        List<Animal> animaux = List.of(canardRare, moutonRare, chevalRare, canardNormal, moutonNormal, chevalNormal);
+
+        System.out.println("\n-----------------FabricAbstraite-----------------");
+        for (Animal animal : animaux) {
+            System.out.println(animal.getNom());
+            animal.crier();
+        }
+
+
     }
 
     public static void testComposite(){
