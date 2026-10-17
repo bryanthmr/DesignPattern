@@ -1,5 +1,7 @@
 package Singleton;
 
+import java.util.Objects;
+
 public class SingleAPI {
 
     private static SingleAPI instance = null;
@@ -26,4 +28,15 @@ public class SingleAPI {
         System.out.println("API singletonnée: M1");
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof SingleAPI singleAPI)) return false;
+        return Objects.equals(attribut, singleAPI.attribut);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(attribut);
+    }
 }
